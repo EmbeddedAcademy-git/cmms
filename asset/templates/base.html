@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMMS</title>
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-blue-500 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-2xl font-bold">CMMS</h1>
+            <ul class="flex space-x-4">
+                <li><a href="{% url 'assetgroup_list' %}" class="text-white hover:text-blue-300">Asset Groups</a></li>
+                <li><a href="{% url 'asset_list' %}" class="text-white hover:text-blue-300">Assets</a></li>
+                <li><a href="{% url 'task_list' %}" class="text-white hover:text-blue-300">Tasks</a></li>
+                <li><a href="{% url 'completedtasks_list' %}" class="text-white hover:text-blue-300">Completed Tasks</a></li>
+                <li><a href="{% url 'workorder_list' %}" class="text-white hover:text-blue-300">Work Orders</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mx-auto p-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

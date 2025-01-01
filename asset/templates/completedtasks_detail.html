@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Completed Task Details</h1>
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold">{{ completedtask.task.task_name }}</h2>
+    <p class="text-gray-600">Completed At: {{ completedtask.completed_at }}</p>
+    <p class="text-gray-600">Description Before: {{ completedtask.description_before }}</p>
+    <p class="text-gray-600">Description After: {{ completedtask.description_after }}</p>
+    <p class="text-gray-600">Issues: {{ completedtask.issues }}</p>
+    <div class="mt-4">
+        <h3 class="text-lg font-bold">Images Before</h3>
+        <div class="flex space-x-4">
+            {% for image in completedtask.image_before.all %}
+            <img src="{{ image.file.url }}" alt="Before" class="w-20 h-20 rounded-full">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="mt-4">
+        <h3 class="text-lg font-bold">Images After</h3>
+        <div class="flex space-x-4">
+            {% for image in completedtask.image_after.all %}
+            <img src="{{ image.file.url }}" alt="After" class="w-20 h-20 rounded-full">
+            {% endfor %}
+        </div>
+    </div>
+    <a href="{% url 'completedtasks_list' %}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2">Back to List</a>
+    <a href="{% url 'completedtasks_update' completedtask.pk %}" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Edit</a>
+    <a href="{% url 'completedtasks_delete' completedtask.pk %}" class="bg-red-500 text-white px-4 py-2 rounded">Delete</a>
+</div>
+{% endblock %}

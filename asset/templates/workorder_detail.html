@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Work Order Details</h1>
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold">Work Description: {{ workorder.work_description }}</h2>
+    <p class="text-gray-600">Scheduled: {{ workorder.scheduled }}</p>
+    <div class="mt-4">
+        <h3 class="text-lg font-bold">Tasks</h3>
+        <ul>
+            {% for task in workorder.tasks.all %}
+            <li>{{ task.task_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="mt-4">
+        <h3 class="text-lg font-bold">Assigned Users</h3>
+        <ul>
+            {% for user in workorder.assigned.all %}
+            <li>{{ user.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{% url 'workorder_list' %}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2">Back to List</a>
+    <a href="{% url 'workorder_update' workorder.pk %}" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Edit</a>
+    <a href="{% url 'workorder_delete' workorder.pk %}" class="bg-red-500 text-white px-4 py-2 rounded">Delete</a>
+</div>
+{% endblock %}

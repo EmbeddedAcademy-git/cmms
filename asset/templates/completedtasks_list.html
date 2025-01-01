@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Completed Tasks</h1>
+<a href="{% url 'completedtasks_create' %}" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Create New Completed Task</a>
+<table class="w-full border-collapse bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-blue-500 text-white">
+        <tr>
+            <th class="p-4">Task</th>
+            <th class="p-4">Completed At</th>
+            <th class="p-4">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for completedtask in completedtasks %}
+        <tr class="border-b">
+            <td class="p-4">{{ completedtask.task.task_name }}</td>
+            <td class="p-4">{{ completedtask.completed_at }}</td>
+            <td class="p-4">
+                <a href="{% url 'completedtasks_detail' completedtask.pk %}" class="text-blue-500 hover:text-blue-700 mr-2">View</a>
+                <a href="{% url 'completedtasks_update' completedtask.pk %}" class="text-green-500 hover:text-green-700 mr-2">Edit</a>
+                <a href="{% url 'completedtasks_delete' completedtask.pk %}" class="text-red-500 hover:text-red-700">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

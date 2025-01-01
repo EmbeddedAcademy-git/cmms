@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Asset Group Details</h1>
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <div class="flex items-center mb-4">
+        <img src="{{ assetgroup.thumbnail.file.url }}" alt="{{ assetgroup.group_name }}" class="w-20 h-20 rounded-full mr-4">
+        <h2 class="text-2xl font-bold">{{ assetgroup.group_name }}</h2>
+    </div>
+    <a href="{% url 'assetgroup_list' %}" class="bg-gray-300 text-gray-700 px-4 py-2 rounded mr-2">Back to List</a>
+    <a href="{% url 'assetgroup_update' assetgroup.pk %}" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Edit</a>
+    <a href="{% url 'assetgroup_delete' assetgroup.pk %}" class="bg-red-500 text-white px-4 py-2 rounded">Delete</a>
+</div>
+{% endblock %}
